@@ -1,0 +1,29 @@
+# Get all cats
+GET http://localhost:3000/cats HTTP/1.1
+
+###
+
+# Register a new cat
+POST http://localhost:3000/cats/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "nickname": "Murzi2k",
+  "birthDate": "2020-01-02T00:00",
+  "email": "murzik@cats.local",
+  "weight": 2,
+  "password": "785612"
+}
+
+###
+
+# Edit the cat
+PATCH http://localhost:3000/cats/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nickname": "Barsik",
+    "weight": 2
+}
+
+###
