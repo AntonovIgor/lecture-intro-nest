@@ -9,6 +9,7 @@ import {
   UsePipes,
   UseInterceptors,
   ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
 
 import { CatsService } from './cats.service';
@@ -16,6 +17,7 @@ import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
 import { RemoveUndefinedPipe } from 'src/pipes/remove-undefined.pipe';
 import { LoggingInterceptor } from '../interceptors/logging.interceptor';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('cats')
 @UseInterceptors(LoggingInterceptor)
@@ -30,6 +32,7 @@ export class CatsController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   getAllCats() {
     return this.catsService.getAllCats();
   }

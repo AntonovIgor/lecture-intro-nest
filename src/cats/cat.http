@@ -1,5 +1,6 @@
 # Get all cats
 GET http://localhost:3000/cats HTTP/1.1
+Authorization: Bearer 
 
 ###
 
@@ -24,6 +25,17 @@ Content-Type: application/json
 {
     "nickname": "Barsik",
     "weight": 2
+}
+
+###
+
+# Login
+POST http://localhost:3000/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "murzik@cats.local",
+  "password": "785612"
 }
 
 ###
