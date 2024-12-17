@@ -66,7 +66,7 @@ describe('CatsController', () => {
     it('should call service to update a cat', () => {
       const updateData: UpdateCatDto = { nickname: 'NewName' };
 
-      controller.updateCat('1', updateData);
+      controller.updateCat(1, updateData);
       expect(service.updateCat).toHaveBeenCalledWith(1, updateData);
     });
   });
