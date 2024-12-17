@@ -1,13 +1,10 @@
-import {
-  Injectable,
-  BadRequestException,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { CatsRepository } from './cats.repository';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
 import { Cat } from './cat.interfaces';
+import { AgeTooYoungException } from 'src/exceptions/age-too-young.exception';
 
 @Injectable()
 export class CatsService {
@@ -22,9 +19,7 @@ export class CatsService {
     const age = this.calculateAge(birthDate);
 
     if (age < this.MIN_CAT_AGE) {
-      throw new BadRequestException(
-        'Cats younger than 1 year cannot register.',
-      );
+      throw new AgeTooYoungException();
     }
 
     return this.catsRepository.create({
