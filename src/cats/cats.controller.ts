@@ -7,6 +7,7 @@ import {
   Patch,
   Param,
   UsePipes,
+  UseInterceptors,
   ValidationPipe,
 } from '@nestjs/common';
 
@@ -14,8 +15,10 @@ import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
 import { RemoveUndefinedPipe } from 'src/pipes/remove-undefined.pipe';
+import { LoggingInterceptor } from '../interceptors/logging.interceptor';
 
 @Controller('cats')
+@UseInterceptors(LoggingInterceptor)
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
